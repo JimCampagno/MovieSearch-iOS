@@ -13,6 +13,7 @@ import CoreData
 final class CoreDataStack {
     
     static let shared = CoreDataStack()
+    var tempStore: NSPersistentStore!
     private static let name = "DownloadingImages"
     
     
@@ -25,7 +26,9 @@ final class CoreDataStack {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: name)
+        self.tempStore = try! container.persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            print("\nstoreDescription:\n\(storeDescription)")
             if let error = error as NSError? {
                 // TODO: Handle possible error instead of just crashing.
                 fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -33,6 +36,17 @@ final class CoreDataStack {
         })
         return container
     }()
+    
+    func addMovieToTempStorage(_ movie: Movie) {
+        context.assign(movie, to: tempStore)
+    }
+    
+    func addMovieToMainStorage(_ movie: Movie) -> Movie {
+        let json = movie.serialize()
+        context.delete(movie)
+        return Movie(json: json, tempStorage: false)
+    }
+   
     
     func saveContext () {
         let context = persistentContainer.viewContext

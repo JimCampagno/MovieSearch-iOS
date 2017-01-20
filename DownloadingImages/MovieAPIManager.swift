@@ -31,7 +31,25 @@ final class MovieAPIManager {
         session.dataTask(with: request, completionHandler: { [unowned self] data, response, error in
             DispatchQueue.main.async {
                 guard let json = self.generateJSON(with: data) else { handler(nil, .badData); return }
-                print("JSON:\n \(json)")
+                
+                let results = json["Search"] as! [JSON]
+
+                for rawMovie in results {
+                    
+                    let film = Movie(json: rawMovie)
+                    
+                    print("\nfilm:\n\(film)")
+                    
+                    let newFilm = CoreDataStack.shared.addMovieToMainStorage(film)
+                    
+                    print("\nnewFilm:\n\(newFilm))")
+                    
+                   // print("\n\(film)")
+                    
+                }
+                
+                
+                
                 
                 // TODO: Update this.
                 handler(nil, .success)

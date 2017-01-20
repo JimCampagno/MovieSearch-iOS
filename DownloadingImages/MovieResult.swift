@@ -14,6 +14,4 @@ enum MovieResult: Error {
     case badSearchQuery
     case badData
     
-    
-    
 }

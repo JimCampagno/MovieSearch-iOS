@@ -13,9 +13,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MovieAPIManager.shared.searchMovies(query: "Jurassic Park", handler: { movies, result in
+        MovieAPIManager.shared.searchMovies(query: "The Matrix", handler: { movies, result in
             
-            print("\n")
             print("Here we are!")
             
             switch result {
