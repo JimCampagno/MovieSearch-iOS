@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 
 // MARK: - Init Methods
@@ -55,6 +56,10 @@ extension Movie {
         ]
     }
     
+    override public var description: String {
+        return "\n\(title)"
+    }
+    
 }
 
 // MARK: - Save
@@ -62,6 +67,16 @@ extension Movie {
     
     func saveToFavorites() -> Movie {
         return CoreDataStack.shared.addMovieToMainStorage(self)
+    }
+    
+}
+
+
+// MARK: - Fetch
+extension Movie {
+    
+    static var fetch: NSFetchRequest<Movie> {
+        return NSFetchRequest<Movie>(entityName: "Movie")
     }
     
 }

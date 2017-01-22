@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // CoreDataStack.shared.saveContext()
+        CoreDataStack.shared.saveContext()
     }
 
 }

@@ -38,13 +38,9 @@ final class MovieAPIManager {
                     
                     let film = Movie(json: rawMovie)
                     
-                    print("\nfilm:\n\(film)")
+                   //  _ = CoreDataStack.shared.addMovieToMainStorage(film)
                     
-                    let newFilm = CoreDataStack.shared.addMovieToMainStorage(film)
                     
-                    print("\nnewFilm:\n\(newFilm))")
-                    
-                   // print("\n\(film)")
                     
                 }
                 

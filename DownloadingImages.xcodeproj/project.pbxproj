@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D3FF3951E344C3800B6657B /* MovieManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3FF3941E344C3800B6657B /* MovieManager.swift */; };
 		7DD4058B1E2FFECF00943917 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4058A1E2FFECF00943917 /* AppDelegate.swift */; };
 		7DD4058D1E2FFECF00943917 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD4058C1E2FFECF00943917 /* ViewController.swift */; };
 		7DD405901E2FFECF00943917 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DD4058E1E2FFECF00943917 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D3FF3941E344C3800B6657B /* MovieManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieManager.swift; sourceTree = "<group>"; };
 		7DD405871E2FFECF00943917 /* DownloadingImages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DownloadingImages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7DD4058A1E2FFECF00943917 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7DD4058C1E2FFECF00943917 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				7DD405C51E310BB800943917 /* MovieImageResult.swift */,
 				7DD405C21E310AF900943917 /* MovieAPIManager.swift */,
 				7DD405BA1E30148700943917 /* UIImageExtensions.swift */,
+				7D3FF3941E344C3800B6657B /* MovieManager.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D3FF3951E344C3800B6657B /* MovieManager.swift in Sources */,
 				7DD405931E2FFECF00943917 /* DownloadingImages.xcdatamodeld in Sources */,
 				7DD405C61E310BB800943917 /* MovieImageResult.swift in Sources */,
 				7DD4058D1E2FFECF00943917 /* ViewController.swift in Sources */,
@@ -480,6 +484,7 @@
 				7DD405A91E2FFECF00943917 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7DD405AA1E2FFECF00943917 /* Build configuration list for PBXNativeTarget "DownloadingImagesTests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +493,7 @@
 				7DD405AC1E2FFECF00943917 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

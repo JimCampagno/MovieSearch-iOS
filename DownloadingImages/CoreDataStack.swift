@@ -14,6 +14,7 @@ final class CoreDataStack {
     
     static let shared = CoreDataStack()
     var tempStore: NSPersistentStore!
+    var mainStore: NSPersistentStore!
     private static let name = "DownloadingImages"
     
     
@@ -26,14 +27,24 @@ final class CoreDataStack {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: name)
+        
         self.tempStore = try! container.persistentStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            print("\nstoreDescription:\n\(storeDescription)")
             if let error = error as NSError? {
-                // TODO: Handle possible error instead of just crashing.
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
+        for store in container.persistentStoreCoordinator.persistentStores {
+            if let metadata = store.metadata, let storeType = metadata["NSStoreType"] as? String {
+                if storeType == "SQLite" {
+                    self.mainStore = store
+                    break
+                }
+            }
+        }
+        
         return container
     }()
     
@@ -44,14 +55,17 @@ final class CoreDataStack {
     func addMovieToMainStorage(_ movie: Movie) -> Movie {
         let json = movie.serialize()
         context.delete(movie)
-        return Movie(json: json, tempStorage: false)
+        let newFilm = Movie(json: json, tempStorage: false)
+        context.assign(newFilm, to: mainStore)
+        return newFilm
     }
-   
+    
     
     func saveContext () {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
+                print("attempt to save the context.")
                 try context.save()
             } catch {
                 // TODO: Handle possible error instead of just crashing.

@@ -9,14 +9,34 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+      //  testOtherThing()
+        
+       // fethFilmsDude()
+
+    }
+    
+    func testOtherThing() {
+        
+        let manager = MovieManager()
+        
+        let onlyTheBest = manager.fetchFavorites()
+        
+        print("\nFavoritedFilms:")
+        
+        print(onlyTheBest)
+        
+    }
+    
+    func fethFilmsDude() {
+        
         MovieAPIManager.shared.searchMovies(query: "The Matrix", handler: { movies, result in
             
-            print("Here we are!")
-            
+            print("\n")
             switch result {
                 
             case .badData:
@@ -25,12 +45,13 @@ class ViewController: UIViewController {
                 print("Bad Search Query.")
             case .success:
                 print("Success!")
+                CoreDataStack.shared.saveContext()
                 
+
                 
             }
             
         })
-        
     }
 
   
